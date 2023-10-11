@@ -43,8 +43,8 @@ export default function CardDialog(props: CardDialogProps) {
   const title = variant === "edit" ? props.title : "";
   const description = variant === "edit" ? props.description : "";
 
-  const [edittingTitle, setEdittingTitle] = useState(variant === "new");
-  const [edittingDescription, setEdittingDescription] = useState(
+  const [editingTitle, setEditingTitle] = useState(variant === "new");
+  const [editingDescription, setEditingDescription] = useState(
     variant === "new",
   );
 
@@ -59,11 +59,6 @@ export default function CardDialog(props: CardDialogProps) {
 
   const handleClose = () => {
     onClose();
-    if (variant === "edit") {
-      setNewTitle(title);
-      setNewDescription(description);
-      setNewListId(listId);
-    }
   };
 
   const handleSave = async () => {
@@ -115,11 +110,11 @@ export default function CardDialog(props: CardDialogProps) {
   return (
     <Dialog open={open} onClose={handleClose}>
       <DialogTitle className="flex gap-4">
-        {edittingTitle ? (
+        {editingTitle ? (
           <ClickAwayListener
             onClickAway={() => {
               if (variant === "edit") {
-                setEdittingTitle(false);
+                setEditingTitle(false);
               }
             }}
           >
@@ -133,7 +128,7 @@ export default function CardDialog(props: CardDialogProps) {
           </ClickAwayListener>
         ) : (
           <button
-            onClick={() => setEdittingTitle(true)}
+            onClick={() => setEditingTitle(true)}
             className="w-full rounded-md p-2 hover:bg-white/10"
           >
             <Typography className="text-start">{newTitle}</Typography>
@@ -156,11 +151,11 @@ export default function CardDialog(props: CardDialogProps) {
         )}
       </DialogTitle>
       <DialogContent className="w-[600px]">
-        {edittingDescription ? (
+        {editingDescription ? (
           <ClickAwayListener
             onClickAway={() => {
               if (variant === "edit") {
-                setEdittingDescription(false);
+                setEditingDescription(false);
               }
             }}
           >
@@ -174,7 +169,7 @@ export default function CardDialog(props: CardDialogProps) {
           </ClickAwayListener>
         ) : (
           <button
-            onClick={() => setEdittingDescription(true)}
+            onClick={() => setEditingDescription(true)}
             className="w-full rounded-md p-2 hover:bg-white/10"
           >
             <Typography className="text-start">{newDescription}</Typography>
