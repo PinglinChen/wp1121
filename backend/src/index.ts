@@ -12,10 +12,6 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-//const bodyParser = require('body-parser');
-//app.use(bodyParser.json({limit: '50mb'}));
-//app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
-
 // Routes
 app.use("/api/cards", CardRoutes);
 app.use("/api/lists", ListRoutes);

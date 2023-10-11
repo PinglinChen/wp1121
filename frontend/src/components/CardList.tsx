@@ -27,7 +27,6 @@ export type CardListProps = {
   songCount: number;
 };
 
-/*export default function CardList({ id, name, cards, showDelete }: CardListProps) {*/
 export default function CardList({ id, name, cards, imagePath, showDelete }: CardListProps) {
   const [openNewCardDialog, setOpenNewCardDialog] = useState(false);
   const [edittingName, setEdittingName] = useState(false);

@@ -56,7 +56,6 @@ export function CardProvider({ children }: CardProviderProps) {
     // you can do functional-ish programming in JS too
     const listMap = rawLists.reduce(
       (acc, list) => {
-        //acc[list.id] = { ...list, cards: [] };
         acc[list.id] = { ...list, cards: [], showDelete: false };
         return acc;
       },

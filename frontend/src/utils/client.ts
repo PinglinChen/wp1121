@@ -12,8 +12,6 @@ import type {
   UpdateListPayload,
   UpdateListResponse,
   GetSongsResponse,
-  //CreateSongPayload,
-  //CreateSongResponse,
   UpdateSongPayload,
   UpdateSongResponse,
   DeleteSongResponse,
@@ -26,10 +24,6 @@ const client = axios.create({
   baseURL: env.VITE_API_URL,
 });
 
-/*export function getLists() {
-  return client.get<GetListsResponse>("/lists");
-}*/
-
 export function getLists() {
   return client.get<GetListsResponse>("/lists").catch(err => {
     console.error("Error fetching lists:", err.response?.data || err.message);
@@ -40,19 +34,6 @@ export function getLists() {
 export function getCards() {
   return client.get<GetCardsResponse>("/cards");
 }
-
-/*export function createList(input: CreateListPayload) {*/
-/*export function createList(input: CreateListPayload | FormData) {
-  return client.post<CreateListResponse>("/lists", input);
-}*/
-
-/*export function createList(input: CreateListPayload | FormData) {
-  const config = input instanceof FormData
-    ? { headers: { 'Content-Type': 'multipart/form-data' } }
-    : {};
-
-  return client.post<CreateListResponse>("/lists", input, config);
-} current*/
 
 export function createList(input: CreateListPayload) {
   return client
@@ -86,10 +67,6 @@ export function deleteList(id: string) {
 export function getSongsOfList(listId: string) {
   return client.get<GetSongsResponse>(`/lists/${listId}/songs`);
 }
-
-/*export function createSong(listId: string, input: CreateSongPayload) {
-  return client.post<CreateSongResponse>(`/lists/${listId}/songs`, input);
-}*/
 
 export function updateSong(listId: string, songId: string, input: UpdateSongPayload) {
   return client.put<UpdateSongResponse>(`/lists/${listId}/songs/${songId}`, input);
