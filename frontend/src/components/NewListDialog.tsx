@@ -18,7 +18,7 @@ type CreateListPayload = {
 type NewListDialogProps = {
   open: boolean;
   onClose: () => void;
-  createList: (input: CreateListPayload) => Promise<any>;
+  createList: (input: CreateListPayload) => Promise<unknown>;
   fetchLists: () => void;
 };
 

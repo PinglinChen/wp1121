@@ -40,7 +40,6 @@ export default function CardList({ id, name, cards, imagePath, showDelete }: Car
     if (newName !== name) {
       try {
         await updateList(id, { name: newName });
-        console.log("create list with ID:", id);
         fetchLists();
       } catch (error) {
         alert("Error: Failed to update list name");
@@ -50,10 +49,8 @@ export default function CardList({ id, name, cards, imagePath, showDelete }: Car
   };
   
   const handleDelete = async () => {
-    console.log("Attempting to delete list with ID:", id);
     try {
         await deleteList(id);
-        console.log("List deleted successfully.");
         fetchLists();
     } catch (error) {
         console.error("Error deleting the list:", error);
