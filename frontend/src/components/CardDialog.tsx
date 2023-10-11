@@ -128,7 +128,7 @@ export default function CardDialog(props: CardDialogProps) {
               defaultValue={title}
               onChange={(e) => setNewTitle(e.target.value)}
               className="grow"
-              placeholder="Enter a title for this card..."
+              placeholder="Enter your mood for this list..."
             />
           </ClickAwayListener>
         ) : (

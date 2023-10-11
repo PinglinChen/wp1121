@@ -16,14 +16,19 @@ import { deleteList, updateList } from "@/utils/client";
 import Card from "./Card";
 import type { CardProps } from "./Card";
 import CardDialog from "./CardDialog";
+import { Link } from 'react-router-dom';
 
 export type CardListProps = {
   id: string;
   name: string;
   cards: CardProps[];
+  showDelete: boolean;
+  imagePath: string;
+  songCount: number;
 };
 
-export default function CardList({ id, name, cards }: CardListProps) {
+/*export default function CardList({ id, name, cards, showDelete }: CardListProps) {*/
+export default function CardList({ id, name, cards, imagePath, showDelete }: CardListProps) {
   const [openNewCardDialog, setOpenNewCardDialog] = useState(false);
   const [edittingName, setEdittingName] = useState(false);
   const { fetchLists } = useCards();
@@ -36,6 +41,7 @@ export default function CardList({ id, name, cards }: CardListProps) {
     if (newName !== name) {
       try {
         await updateList(id, { name: newName });
+        console.log("create list with ID:", id);
         fetchLists();
       } catch (error) {
         alert("Error: Failed to update list name");
@@ -43,19 +49,23 @@ export default function CardList({ id, name, cards }: CardListProps) {
     }
     setEdittingName(false);
   };
-
+  
   const handleDelete = async () => {
+    console.log("Attempting to delete list with ID:", id);
     try {
-      await deleteList(id);
-      fetchLists();
+        await deleteList(id);
+        console.log("List deleted successfully.");
+        fetchLists();
     } catch (error) {
-      alert("Error: Failed to delete list");
+        console.error("Error deleting the list:", error);
+        alert("Error: Failed to delete list");
     }
   };
 
   return (
     <>
       <Paper className="w-80 p-6">
+        <img src={imagePath} alt="" className="w-full h-40 object-cover mb-4" />
         <div className="flex gap-4">
           {edittingName ? (
             <ClickAwayListener onClickAway={handleUpdateName}>
@@ -79,7 +89,7 @@ export default function CardList({ id, name, cards }: CardListProps) {
             </button>
           )}
           <div className="grid place-items-center">
-            <IconButton color="error" onClick={handleDelete}>
+            <IconButton color="error" onClick={handleDelete} style={{ display: showDelete ? 'block' : 'none' }}>
               <DeleteIcon />
             </IconButton>
           </div>
@@ -94,9 +104,12 @@ export default function CardList({ id, name, cards }: CardListProps) {
             onClick={() => setOpenNewCardDialog(true)}
           >
             <AddIcon className="mr-2" />
-            Add a card
+            Add a comment
           </Button>
         </div>
+        <Link to={`/list/${id}/edit`}>
+            Edit
+        </Link>
       </Paper>
       <CardDialog
         variant="new"

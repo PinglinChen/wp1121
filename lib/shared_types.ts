@@ -9,7 +9,7 @@
 // A general rule of thumb is to always use `type` unless you have a good reason
 // to use `interface`. `interface` is more powerful, at the cost of baring more
 // footguns.
-export type CardData = {
+/*export type CardData = {
   id: string;
   title: string;
   description: string;
@@ -19,8 +19,26 @@ export type CardData = {
 export type ListData = {
   id: string;
   name: string;
+  description: string;
   cards: CardData[];
+  imagePath: string;
 };
+
+/*export type SongData = {
+  id: string;
+  title: string;
+  artist: string;
+  link: string;
+  list_id: string;
+};
+
+export type SongListData = {
+  id: string;
+  name: string;
+  description: string;
+  songs: SongData[];
+  imagePath: string;
+};*
 
 export type GetCardsResponse = CardData[];
 
@@ -47,6 +65,174 @@ export type CreateListPayload = Omit<ListData, "id" | "cards">;
 export type CreateListResponse = Pick<ListData, "id">;
 
 export type UpdateListPayload = Partial<Omit<ListData, "id" | "cards">>;
+
+export type UpdateListResponse = "OK";
+
+export type DeleteListResponse = "OK";
+
+
+export type GetSongsResponse = SongData[];
+
+export type GetSongResponse = SongData;
+
+export type CreateSongPayload = Omit<SongData, "id">;
+
+export type CreateSongResponse = Pick<SongData, "id">;
+
+export type UpdateSongPayload = Partial<Omit<SongData, "id">>;
+
+export type UpdateSongResponse = "OK";
+
+export type DeleteSongResponse = "OK";
+
+export type GetResponse = Omit<ListData, "songs">[];
+
+export type CreateListPayload = Omit<ListData, "id" | "songs">;
+
+export type UpdateListPayload = Partial<Omit<ListData, "id" | "songs">>;*/
+
+//current
+/*export type SongData = {
+  id: string;
+  title: string;
+  artist: string;
+  link: string;
+  list_id: string;
+};
+
+export type GetSongsResponse = SongData[];
+
+export type GetSongResponse = SongData;
+
+export type CreateSongPayload = Omit<SongData, "id">;
+
+export type CreateSongResponse = Pick<SongData, "id">;
+
+export type UpdateSongPayload = Partial<Omit<SongData, "id">>;
+
+export type UpdateSongResponse = "OK";
+
+export type DeleteSongResponse = "OK";
+
+export type CardData = {
+  id: string;
+  title: string;
+  description: string;
+  list_id: string;
+};
+
+export type ListData = {
+  id: string;
+  name: string;
+  description: string;
+  cards: CardData[];
+  //songs: SongData[];
+  imagePath: string;
+};
+
+export type CreateListPayload = {
+  name: string;
+  description: string;
+  imagePath: string | null;  // 允许 imagePath 是 string 或 null
+};
+
+export type GetCardsResponse = CardData[];
+
+export type GetCardResponse = CardData;
+
+export type CreateCardPayload = Omit<CardData, "id">;
+
+export type CreateCardResponse = Pick<CardData, "id">;
+
+export type UpdateCardPayload = Partial<Omit<CardData, "id">>;
+
+export type UpdateCardResponse = "OK";
+
+export type DeleteCardResponse = "OK";
+
+export type GetListsResponse = Omit<ListData, "cards" | "songs">[];
+
+//export type CreateListPayload = Omit<ListData, "id" | "cards" | "songs">;
+
+export type CreateListResponse = Pick<ListData, "id">;
+
+export type UpdateListPayload = Partial<Omit<ListData, "id" | "cards" | "songs">>;
+
+export type UpdateListResponse = "OK";
+
+export type DeleteListResponse = "OK";*/
+
+export type SongData = {
+  //id: string;
+  title: string;
+  artist: string;
+  link: string;
+  //list_id: string;
+  imagePath: string;
+  description: string;
+};
+
+export type GetSongsResponse = SongData[];
+
+export type GetSongResponse = SongData;
+
+export type CreateSongPayload = Omit<SongData, "id">;
+
+//export type CreateSongResponse = Pick<SongData, "id">;
+
+export type UpdateSongPayload = Partial<Omit<SongData, "id">>;
+
+export type UpdateSongResponse = "OK";
+
+export type DeleteSongResponse = "OK";
+
+export type CardData = {
+  id: string;
+  title: string;
+  description: string;
+  list_id: string;
+};
+
+export type ListData = {
+  id: string;
+  name: string;
+  description: string;
+  cards: CardData[];
+  //songs: SongData[];
+  imagePath: string;
+  songCount: number;
+};
+
+export type CreateListPayload = {
+  name: string;
+  description: string;
+  imagePath: string | null;
+  songCount: number;
+};
+
+export type GetCardsResponse = CardData[];
+
+export type GetCardResponse = CardData;
+
+export type CreateCardPayload = Omit<CardData, "id">;
+
+export type CreateCardResponse = Pick<CardData, "id">;
+
+export type UpdateCardPayload = Partial<Omit<CardData, "id">>;
+
+export type UpdateCardResponse = "OK";
+
+export type DeleteCardResponse = "OK";
+
+//export type GetListsResponse = Omit<ListData, "cards" | "songs">[];
+export type GetListsResponse = Omit<ListData, "cards" >[];
+
+//export type CreateListPayload = Omit<ListData, "id" | "cards" | "songs">;
+
+export type CreateListResponse = Pick<ListData, "id">;
+
+//export type UpdateListPayload = Partial<Omit<ListData, "id" | "cards" | "songs">>;
+export type UpdateListPayload = Partial<Omit<ListData, "id" | "cards" >>;
 
 export type UpdateListResponse = "OK";
 
